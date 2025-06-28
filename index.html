@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bx Predictor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #home, #loading, #activation {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .visible {
+      display: flex !important;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: black;
+    }
+
+    .button {
+      width: 180%;
+      height: 30px;
+      margin: 6px 0;
+      background-color: white;
+      border: 1.5px solid black;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: background 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button:hover {
+      background-color: #2a2a2a;
+    }
+
+    .logo {
+      height: 20px;
+      max-width: 80%;
+      object-fit: contain;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(0, 0, 0, 0.2);
+      border-top-color: #00f0ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #activation input {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      font-size: 16px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #00f0ff;
+      background: #1e1e1e;
+      color: white;
+    }
+
+    .activation-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .activation-buttons button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #00f0ff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .activation-buttons button:hover {
+      background-color: #00c4cc;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 8px 15px;
+      background: #555;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background: #777;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Home Page -->
+<div id="home" class="visible">
+  <h1>Bx Predictor</h1>
+
+  <!-- Buttons with Image Logos -->
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo1" class="logo" alt="Logo 1"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo2" class="logo" alt="Logo 2"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo3" class="logo" alt="Logo 3"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo4" class="logo" alt="Logo 4"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo5" class="logo" alt="Logo 5"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo6" class="logo" alt="Logo 6"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo7" class="logo" alt="Logo 7"></div>
+  <div class="button" onclick="startLoading()"><img src="https://via.placeholder.com/80x20?text=Logo8" class="logo" alt="Logo 8"></div>
+</div>
+
+<!-- Loading Page -->
+<div id="loading">
+  <div class="spinner"></div>
+  <p>Loading...</p>
+</div>
+
+<!-- Activation Page -->
+<div id="activation">
+  <input type="text" id="codeInput" placeholder="Enter Activation Code" />
+  <div class="activation-buttons">
+    <button onclick="window.location.href='https://example.com/get-code'">Get Code</button>
+    <button onclick="checkCode()">Enter</button>
+  </div>
+  <button class="back-button" onclick="goBack()">Back</button>
+</div>
+
+<script>
+  const home = document.getElementById('home');
+  const loading = document.getElementById('loading');
+  const activation = document.getElementById('activation');
+
+  function startLoading() {
+    home.classList.remove('visible');
+    loading.classList.add('visible');
+    setTimeout(() => {
+      loading.classList.remove('visible');
+      activation.classList.add('visible');
+    }, 6000); // 60 seconds = 1 minute
+  }
+
+  function goBack() {
+    activation.classList.remove('visible');
+    home.classList.add('visible');
+  }
+
+  function checkCode() {
+    const code = document.getElementById('codeInput').value.trim();
+    if (code === '1w345') {
+      window.location.href = 'https://example.com/success';
+    } else {
+      alert('Invalid Activation Code');
+    }
+  }
+</script>
+
+</body>
+</html>
